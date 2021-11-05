@@ -1,0 +1,11 @@
+@use "typography";
+
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --weight-thin: 200;
+  --weight-regular: 400;
+  --weight-bold: 700;
+
+  font-family: "Montserrat", sans-serif;
+}
