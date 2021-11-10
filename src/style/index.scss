@@ -9,3 +9,58 @@
 
   font-family: "Montserrat", sans-serif;
 }
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  margin: 0px;
+  background: linear-gradient(180deg, #62c2c8 0%, rgba(118, 247, 255, 0) 100%);
+}
+
+.header {
+  height: 21px;
+  margin: 29px 20px;
+  display: flex;
+  justify-content: space-between;
+  &__item {
+    display: flex;
+    &--cloudiness {
+    }
+    &--wind {
+    }
+    &--humidity {
+    }
+  }
+}
+
+.main {
+  height: 259px;
+  margin: 50px 55px;
+  &__city {
+  }
+  &__temp {
+  }
+  &__search {
+  }
+}
+
+.long-term {
+  &__item {
+    height: 54px;
+
+    &--tomorrow {
+    }
+    &--for-2-days {
+    }
+    &--for-3-days {
+    }
+  }
+}

@@ -4,5 +4,30 @@
     <meta charset="utf-8" />
     <title>Weather App</title>
   </head>
-  <body></body>
+  <body>
+    <header class="header">
+      <div class="header__item header__cloudiness">
+        <img class="header__photo" src="./src/img/cloud" />
+        <div class="header__item header__cloudiness--value">75%</div>
+      </div>
+      <div class="header__item header__wind">
+        <img class="header__photo" src="./src/img/wind" />
+        <div class="header__item header__wind--value">1.5m/s</div>
+      </div>
+      <div class="header__item header__humidity">
+        <img class="header__photo" src="./src/img/humidity" />
+        <div class="header__item header__humidity--value">86%</div>
+      </div>
+    </header>
+    <div class="main">
+      <div class="main__city"></div>
+      <div class="main__temp"></div>
+      <div class="main__search"></div>
+    </div>
+    <div class="long-term">
+      <div class="long-term__item long-term__item--tomorrow"></div>
+      <div class="long-term__item long-term__item--for-2-days"></div>
+      <div class="long-term__item long-term__item--for-3-days"></div>
+    </div>
+  </body>
 </html>
