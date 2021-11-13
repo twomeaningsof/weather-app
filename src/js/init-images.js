@@ -7,9 +7,9 @@ const assignImage = (element, image) => {
 }
 
 //"Catch" <img> elements
-const cloudElements = document.querySelectorAll('.header-cloud');
-const humidityElements = document.querySelectorAll('.humidity-cloud');
-const windElements = document.querySelectorAll('.wind-cloud');
+const cloudElements = document.querySelectorAll('.cloud-img');
+const humidityElements = document.querySelectorAll('.humidity-img');
+const windElements = document.querySelectorAll('.wind-img');
 
 //Assign to every element its proper image
 cloudElements.forEach( element => assignImage(element, cloud));
