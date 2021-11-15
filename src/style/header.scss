@@ -1,0 +1,19 @@
+.header {
+  height: 21px;
+  margin: 29px 20px 0px;
+  display: flex;
+  justify-content: space-between;
+
+  &__item {
+    display: flex;
+    font-size: 16px;
+  }
+
+  &__photo {
+    padding-right: 10px;
+  }
+
+  &__value {
+    opacity: 0.75;
+  }
+}
