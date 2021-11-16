@@ -1,8 +1,4 @@
 .long-term {
-  &__empty {
-    display: none;
-  }
-
   &__item {
     margin-top: 24px;
     padding: 0px 16.5px 5px;
@@ -23,6 +19,10 @@
     padding-left: 23px;
     display: flex;
     font-size: 13px;
+  }
+
+  &__empty {
+    display: none;
   }
 
   &__photo {
