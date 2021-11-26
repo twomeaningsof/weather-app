@@ -18,14 +18,25 @@ const fetchData = async () => {
   try {
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data);
     return data;
   } catch (error) {
     return alert(`Something went wrong. ${error}`)
   }
 }
 
-const filterData = (data) => [[data.list[0],data.list[8],data.list[16],data.list[24]],data.city.name]
+const filterData = (data) => {
+  const mergedArray = [];
+  const city = data.city.name;
+
+  const fourDays = data.list.filter((_, index) => {
+    return index % 8 === 0 && index < 25
+  })
+
+  mergedArray.push(fourDays);
+  mergedArray.push(city);
+
+  return mergedArray
+}
 
 const mapDataToForecast = (data) => data[0].map(listItem => ({
   temperature: listItem.main.temp,
