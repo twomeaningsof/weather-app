@@ -4,9 +4,9 @@ import { apiKey, baseUrl } from "./constants.js";
 const getGeolocationUrl = (latitude, longitude) =>
   `${baseUrl}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
 
-const geolocationError = (error) => alert(`Unable to retrieve your location.`);
+const getGeolocationError = () => alert(`Unable to retrieve your location.`);
 
-const handleGeolocation = async (position) => {
+const handleSetDataFromGeolocation = async (position) => {
   const { latitude, longitude } = position.coords;
   const { list, city } = await fetchData(getGeolocationUrl(latitude, longitude));
   const filteredList = filterList(list);
@@ -17,5 +17,5 @@ const handleGeolocation = async (position) => {
 if (!navigator.geolocation) {
   alert(`Geolocation is not supported by your browser`);
 } else {
-  navigator.geolocation.getCurrentPosition(handleGeolocation, geolocationError);
+  navigator.geolocation.getCurrentPosition(handleSetDataFromGeolocation, getGeolocationError);
 }
