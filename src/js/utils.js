@@ -3,9 +3,7 @@ const setCloudiness = (value) => `${value}%`;
 const setWind = (value) => `${Math.round(value)}m/s`;
 const setHumidity = (value) => `${value}%`;
 
-export const fetchData = async (requestType) => {
-  const url = requestType;
-
+export const fetchData = async (url) => {
   try {
     const res = await fetch(url);
     const data = await res.json();

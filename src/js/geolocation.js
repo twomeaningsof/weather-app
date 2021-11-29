@@ -1,9 +1,8 @@
 import { fetchData, filterList, mapListToForecast, updatePage } from "./utils.js";
 import { apiKey, baseUrl } from "./constants.js";
 
-const getGeolocationUrl = (latitude, longitude) => {
-  return `${baseUrl}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
-};
+const getGeolocationUrl = (latitude, longitude) =>
+  `${baseUrl}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
 
 const geolocationError = (error) => alert(`Unable to retrieve your location.`);
 
