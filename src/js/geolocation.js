@@ -8,11 +8,16 @@ const getGeolocationError = () => alert(`Unable to retrieve your location.`);
 
 const handleSetDataFromGeolocation = async (position) => {
   const { latitude, longitude } = position.coords;
-  const { list, city } = await fetchData(getGeolocationUrl(latitude, longitude));
-  changeBackground(list[0].dt, city.timezone, city.sunrise, city.sunset);
+  const {
+    list,
+    city: { timezone, sunrise, sunset, name: city },
+  } = await fetchData(getGeolocationUrl(latitude, longitude));
+  const [{ dt: currentTime }] = list;
   const filteredList = filterList(list);
   const forecast = mapListToForecast(filteredList);
-  updatePage({ forecast, city: city.name });
+
+  updatePage({ forecast, city });
+  changeBackground(currentTime, timezone, sunrise, sunset);
 };
 
 if (!navigator.geolocation) {
