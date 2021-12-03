@@ -1,17 +1,37 @@
 import { fetchData, changeBackground, filterList, mapListToForecast, updatePage } from "./utils.js";
 import { apiKey, baseUrl } from "./constants.js";
 
-const getGeolocationUrl = (latitude, longitude) =>
+const getUrlOnGeolocation = (latitude, longitude) =>
   `${baseUrl}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
 
-const getGeolocationError = () => alert(`Unable to retrieve your location.`);
+const getUrlOnLocalStorage = () =>
+  `${baseUrl}?q=${localStorage.getItem("city")}&appid=${apiKey}&units=metric`;
 
-const handleSetDataFromGeolocation = async (position) => {
+const searchOnLocalStorage = async () => {
+  const {
+    list,
+    city: { timezone, sunrise, sunset, name: city },
+  } = await fetchData(getUrlOnLocalStorage());
+  const [{ dt: currentTime }] = list;
+  const filteredList = filterList(list);
+  const forecast = mapListToForecast(filteredList);
+
+  updatePage({ forecast, city });
+  changeBackground(currentTime, timezone, sunrise, sunset);
+  localStorage.getItem("city", city.name);
+};
+
+const getGeolocationError = () => {
+  alert(`Unable to retrieve your location with geolocation.`);
+  searchOnLocalStorage();
+};
+
+const searchOnGeolocation = async (position) => {
   const { latitude, longitude } = position.coords;
   const {
     list,
     city: { timezone, sunrise, sunset, name: city },
-  } = await fetchData(getGeolocationUrl(latitude, longitude));
+  } = await fetchData(getUrlOnGeolocation(latitude, longitude));
   const [{ dt: currentTime }] = list;
   const filteredList = filterList(list);
   const forecast = mapListToForecast(filteredList);
@@ -23,5 +43,5 @@ const handleSetDataFromGeolocation = async (position) => {
 if (!navigator.geolocation) {
   alert(`Geolocation is not supported by your browser`);
 } else {
-  navigator.geolocation.getCurrentPosition(handleSetDataFromGeolocation, getGeolocationError);
+  navigator.geolocation.getCurrentPosition(searchOnGeolocation, getGeolocationError);
 }

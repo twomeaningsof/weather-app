@@ -21,6 +21,7 @@ export const changeBackground = (currentTime, timezone, sunrise, sunset) => {
     : (document.body.style.background =
         "linear-gradient(180deg, #4B5C99 0%, rgba(98, 194, 200, 0) 100%)");
 };
+
 export const filterList = (list) => list.filter((_, index) => index % 8 === 0 && index < 25);
 
 export const mapListToForecast = (list) =>

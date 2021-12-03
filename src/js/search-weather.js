@@ -10,11 +10,19 @@ const getUrl = () => {
 
 const handleSearch = async (event) => {
   event.preventDefault();
-  const { list, city } = await fetchData(getUrl());
-  changeBackground(list[0].dt, city.timezone, city.sunrise, city.sunset);
+  localStorage.removeItem("city");
+
+  const {
+    list,
+    city: { timezone, sunrise, sunset, name: city },
+  } = await fetchData(getUrl());
+  const [{ dt: currentTime }] = list;
   const filteredList = filterList(list);
   const forecast = mapListToForecast(filteredList);
-  updatePage({ forecast, city: city.name });
+
+  updatePage({ forecast, city });
+  changeBackground(currentTime, timezone, sunrise, sunset);
+  localStorage.setItem("city", city);
   return searchElement.reset();
 };
 
