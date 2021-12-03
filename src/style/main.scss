@@ -1,5 +1,5 @@
 .main {
-  margin: 79px 55px 57px;
+  margin: 50px 55px 35px;
   display: flex;
   flex-wrap: wrap;
 
@@ -35,7 +35,7 @@
 
 @media screen and (min-width: 1171px) {
   .main {
-    margin-bottom: 112px;
+    margin: 79px 55px 112px;
 
     &__city {
       margin-bottom: 17px;

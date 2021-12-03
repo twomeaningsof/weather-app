@@ -33,6 +33,14 @@ html {
 }
 
 body {
+  height: 100vh;
   margin: 0px;
   background: linear-gradient(180deg, #62c2c8 0%, rgba(118, 246, 255, 0.247) 100%);
+}
+
+.content-wrapper {
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
 }
