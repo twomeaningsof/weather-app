@@ -18,7 +18,6 @@ const searchOnLocalStorage = async () => {
 
   updatePage({ forecast, city });
   changeBackground(currentTime, timezone, sunrise, sunset);
-  localStorage.getItem("city", city.name);
 };
 
 const getGeolocationError = () => {

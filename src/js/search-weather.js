@@ -20,9 +20,9 @@ const handleSearch = async (event) => {
   const filteredList = filterList(list);
   const forecast = mapListToForecast(filteredList);
 
+  localStorage.setItem("city", city);
   updatePage({ forecast, city });
   changeBackground(currentTime, timezone, sunrise, sunset);
-  localStorage.setItem("city", city);
   return searchElement.reset();
 };
 
