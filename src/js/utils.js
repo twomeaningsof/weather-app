@@ -17,9 +17,9 @@ export const changeBackground = (currentTime, timezone, sunrise, sunset) => {
   const timeOfDay = currentTime + timezone > sunrise && currentTime < sunset ? "day" : "night";
   return timeOfDay === "day"
     ? (document.body.style.background =
-        "linear-gradient(180deg, #62c2c8 0%, rgba(118, 247, 255, 0) 100%)")
+        "linear-gradient(180deg, #62c2c8 0%, rgba(118, 246, 255, 0.247) 100%)")
     : (document.body.style.background =
-        "linear-gradient(180deg, #4B5C99 0%, rgba(98, 194, 200, 0) 100%)");
+        "linear-gradient(180deg, #4B5C99 0%, rgba(98, 194, 200, 0.247) 100%)");
 };
 
 export const filterList = (list) => list.filter((_, index) => index % 8 === 0 && index < 25);

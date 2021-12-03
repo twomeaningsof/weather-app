@@ -1,11 +1,13 @@
 import { fetchData, changeBackground, filterList, mapListToForecast, updatePage } from "./utils.js";
-import { apiKey, baseUrl } from "./constants.js";
+import { apiKey, defaultCity, baseUrl } from "./constants.js";
 
 const getUrlOnGeolocation = (latitude, longitude) =>
   `${baseUrl}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
 
-const getUrlOnLocalStorage = () =>
-  `${baseUrl}?q=${localStorage.getItem("city")}&appid=${apiKey}&units=metric`;
+const getUrlOnLocalStorage = () => {
+  const city = localStorage.getItem("city") ?? defaultCity;
+  return `${baseUrl}?q=${city}&appid=${apiKey}&units=metric`;
+};
 
 const searchOnLocalStorage = async () => {
   const {
@@ -18,11 +20,6 @@ const searchOnLocalStorage = async () => {
 
   updatePage({ forecast, city });
   changeBackground(currentTime, timezone, sunrise, sunset);
-};
-
-const getGeolocationError = () => {
-  alert(`Unable to retrieve your location with geolocation.`);
-  searchOnLocalStorage();
 };
 
 const searchOnGeolocation = async (position) => {
@@ -42,5 +39,5 @@ const searchOnGeolocation = async (position) => {
 if (!navigator.geolocation) {
   alert(`Geolocation is not supported by your browser`);
 } else {
-  navigator.geolocation.getCurrentPosition(searchOnGeolocation, getGeolocationError);
+  navigator.geolocation.getCurrentPosition(searchOnGeolocation, searchOnLocalStorage);
 }
