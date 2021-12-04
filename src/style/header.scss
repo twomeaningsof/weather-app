@@ -1,5 +1,5 @@
 .header {
-  margin: 20px 20px 0px;
+  margin: 10px 20px 0px;
   display: flex;
   justify-content: space-between;
 
@@ -10,6 +10,7 @@
   }
 
   &__photo {
+    height: 70%;
     padding-right: 10px;
   }
 
@@ -25,5 +26,9 @@
     margin-top: 70px;
     margin-left: 0px;
     padding: 0px 15px 0px 90px;
+
+    &__photo {
+      height: 100%;
+    }
   }
 }
