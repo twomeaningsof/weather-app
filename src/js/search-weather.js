@@ -2,11 +2,7 @@ import { fetchData, changeBackground, filterList, mapListToForecast, updatePage 
 import { apiKey, baseUrl } from "./constants.js";
 
 const searchElement = document.getElementById("search");
-
-const getUrl = () => {
-  const city = document.getElementById("city").value;
-  return `${baseUrl}?q=${city}&appid=${apiKey}&units=metric`;
-};
+const searchTextElement = document.getElementById("city");
 
 const handleSearch = async (event) => {
   event.preventDefault();
@@ -23,7 +19,17 @@ const handleSearch = async (event) => {
   localStorage.setItem("city", city);
   updatePage({ forecast, city });
   changeBackground(currentTime, timezone, sunrise, sunset);
-  return searchElement.reset();
+  searchElement.reset();
+  goToTopOfPage();
+  return searchTextElement.blur();
 };
 
+const getUrl = () => {
+  const city = document.getElementById("city").value;
+  return `${baseUrl}?q=${city}&appid=${apiKey}&units=metric`;
+};
+
+const goToTopOfPage = () => (document.body.scrollTop = document.documentElement.scrollTop = 0);
+
 searchElement.addEventListener("submit", handleSearch);
+searchTextElement.addEventListener("blur", handleSearch);
